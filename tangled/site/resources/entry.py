@@ -1,5 +1,3 @@
-from webob.exc import HTTPNotFound
-
 from tangled.web import Resource, represent
 
 from .. import model
@@ -45,7 +43,7 @@ class Entry(Resource):
         session = self.request.db_session
         entry = session.query(model.Entry).get(id)
         if not entry:
-            raise HTTPNotFound()
+            self.request.abort(404)
         return {
             'entry': entry,
         }
