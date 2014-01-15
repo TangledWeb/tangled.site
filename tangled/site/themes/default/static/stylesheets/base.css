@@ -17,19 +17,27 @@ a {
   color: #222;
 }
 
-#meta form {
+#meta form,
+nav form,
+.nav form {
   display: inline;
 }
 
-#meta input {
+#meta input,
+nav input,
+.nav input {
   margin: 0;
   padding: 0;
   border: none;
   background: none;
 }
 
-#header {
+#header,
+#content {
   padding: 8px;
+}
+
+#header {
   height: 112px;
   background-color: #222;
 }
@@ -54,24 +62,29 @@ a {
   line-height: 16px;
 }
 
-nav ul, #nav {
+nav ul, .nav {
   background-color: #cccce8;
   margin: 0;
   padding: 4px 0 4px 8px;
 }
 
-nav li, #nav li {
+nav li, .nav li {
   display: inline;
   margin: 0 8px 0 0;
 }
 
-nav li a, #nav li a {
+nav li a, .nav li a {
   margin: 0;
   padding: 0;
   color: #222;
 }
 
+#page-title {
+  margin-top: 0;
+}
+
 #footer {
   font-size: 85%;
   text-align: center;
+  margin-top: 8px;
 }

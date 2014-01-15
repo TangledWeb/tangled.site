@@ -1,8 +1,6 @@
 <%inherit file="base.mako"/>
 
-<%block name="page_title">
-  <h2>Entries</h2>
-</%block>
+<%block name="page_title">Entries</%block>
 
 <%block name="content">
   % for entry in entries:
@@ -10,3 +8,13 @@
     <div>${entry.content}</div>
   % endfor
 </%block>
+
+% if request.user:
+  <ul class="nav">
+    % if request.user.has_permission('new_entry'):
+      <li>
+        <a href="${request.resource_url('new_entry')}">New Entry</a>
+      </li>
+    % endif
+  </ul>
+% endif

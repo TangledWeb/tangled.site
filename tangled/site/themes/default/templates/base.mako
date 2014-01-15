@@ -15,8 +15,10 @@
         &middot;
         <a href="${request.make_path('/sign-in')}">Sign In</a>
       % else:
-        <a href="${request.make_path('/profile')}">My Profile</a>
-        (${user.name or user.username or user.email})
+        <a href="${request.make_path('/profile')}">
+          My Profile
+          (${user.name or user.username or user.email})
+        </a>
         &middot;
         % if user.has_role('admin'):
           <a href="${request.make_path('/admin/users')}">Admin</a>
@@ -36,7 +38,7 @@
     </div>
 
     <nav>
-      <ul id="nav">
+      <ul class="nav">
         <li><a href="/">Home</a></li>
         <li><a href="/entries">Entries</a></li>
         % for page in pages:
@@ -45,26 +47,28 @@
       </ul>
     </nav>
 
-    <h2 id="page-title">
-      <%block name="page_title">Page Title Goes Here</%block>
-    </h2>
-
-    <%block name="flash">
-      <% flash_messages = request.flash.pop() %>
-      % if flash_messages:
-        <ul id="flash">
-          % for message in flash_messages:
-            <li>${message}</li>
-          % endfor
-         </ul>
-      % endif
-    </%block>
-
     <div id="content">
+      <h2 id="page-title">
+          <%block name="page_title">Page Title Goes Here</%block>
+      </h2>
+
+      <%block name="flash">
+        <% flash_messages = request.flash.pop() %>
+        % if flash_messages:
+          <ul id="flash">
+            % for message in flash_messages:
+              <li>${message}</li>
+            % endfor
+          </ul>
+        % endif
+      </%block>
+
       <%block name="content">
         Content goes here
       </%block>
     </div>
+
+    ${next.body()}
 
     <div id="footer">
       <%block name="footer">
@@ -78,5 +82,9 @@
         </div>
       </%block>
     </div>
+
+    <%block name="javascripts">
+      <!-- JavaScript tags go here -->
+    </%block>
   </body>
 </html>

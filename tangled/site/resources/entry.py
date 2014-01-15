@@ -23,7 +23,7 @@ class Entries(Resource):
         new_entry = model.Entry(**self.request.params)
         session.add(new_entry)
         session.flush()
-        location = self.request.make_url('/entry/{0.id}'.format(new_entry))
+        location = self.request.resource_url('entry', {'id': new_entry.id})
         self.request.response.location = location
 
 
@@ -53,14 +53,19 @@ class Entry(Resource):
     @represent('*/*', permission='edit_entry')
     @represent('text/html', status=303)
     def PUT(self):
-        pass
+        req = self.request
+        resource = Entry(self.app, req, self.name, self.urlvars)
+        entry = resource.GET()['entry']
+        entry.title = req.POST['title']
+        entry.content = req.POST['content']
+        req.response.location = resource.url()
 
-    @represent('*/*', permission='delete_entry')
+    # @represent('*/*', permission='delete_entry')
     @represent('text/html', status=303)
     def DELETE(self):
         entry = self.GET()['entry']
         self.request.db_session.delete(entry)
-        location = self.request.make_url('/entries')
+        location = self.request.resource_url('entries')
         self.request.response.location = location
 
 
@@ -69,6 +74,8 @@ class EditEntry(Resource):
 
     @represent('text/html', template_name='edit_entry.mako')
     def GET(self):
+        resource = Entry(self.app, self.request, self.name, self.urlvars)
+        entry = resource.GET()['entry']
         return {
-            'entry': Entry(self.app, self.request).GET()['entry'],
+            'entry': entry,
         }
