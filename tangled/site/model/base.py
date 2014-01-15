@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 
 from sqlalchemy.schema import Column
 from sqlalchemy.types import DateTime, Integer
@@ -20,6 +20,5 @@ class BaseMixin:
 
 class TimestampMixin:
 
-    created_at = Column(
-        DateTime, nullable=False, default=datetime.datetime.now)
-    updated_at = Column(DateTime)
+    created_at = Column(DateTime, nullable=False, default=datetime.now)
+    updated_at = Column(DateTime, onupdate=datetime.now)
