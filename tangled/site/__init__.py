@@ -28,8 +28,7 @@ def include(app):
     app.settings['mako.lookup.directories'] = template_directory
 
     # Home
-    # XXX: Make configurable
-    app.mount_resource('home', '.resources.entry:Entries', '/')
+    app.mount_resource('home', '.resources.home:Home', '/')
 
     # Auth
     app.mount_resource('sign-up', '.resources.auth:SignUp', '/sign-up')

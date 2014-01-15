@@ -1,0 +1,19 @@
+from tangled.web import Resource
+
+from ..resources.entry import Entries, Entry
+
+
+class Home(Resource):
+
+    def GET(self):
+        app = self.app
+        req = self.request
+        home_slug = app.settings['site.home']
+        if home_slug:
+            resource = Entry(app, req, urlvars={'id': home_slug})
+        else:
+            resource = Entries(app, req)
+        del req.representation_info
+        req.resource = resource
+        req.resource_method = resource.GET
+        return resource.GET()
