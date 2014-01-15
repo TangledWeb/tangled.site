@@ -58,11 +58,10 @@ class Entry(Resource):
     @represent('text/html', status=303)
     def PUT(self):
         req = self.request
-        resource = Entry(self.app, req, self.name, self.urlvars)
-        entry = resource.GET()['entry']
+        entry = self.GET()['entry']
         entry.title = req.POST['title']
         entry.content = req.POST['content']
-        req.response.location = resource.url()
+        req.response.location = self.url()
 
     # @represent('*/*', permission='delete_entry')
     @represent('text/html', status=303)
@@ -78,7 +77,7 @@ class EditEntry(Resource):
 
     @represent('text/html', template_name='edit_entry.mako')
     def GET(self):
-        resource = Entry(self.app, self.request, self.name, self.urlvars)
+        resource = Entry(self.app, self.request, urlvars=self.urlvars)
         entry = resource.GET()['entry']
         return {
             'entry': entry,
