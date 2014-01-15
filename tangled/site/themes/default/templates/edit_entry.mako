@@ -10,8 +10,11 @@
       <input type="hidden" name="$method" value="PUT" />
 
       <fieldset>
+        <label for="title">Slug</label>
+        <input type="text" name="slug" value="${entry.slug}"/>
+
         <label for="title">Title</label>
-        <input type="text" name="title" value="${entry.title}" autofocus="autofocus" />
+        <input type="text" name="title" value="${entry.title}" />
 
         <label for="content">Content</label>
         <textarea name="content">${entry.content}</textarea>

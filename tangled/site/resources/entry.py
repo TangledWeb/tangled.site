@@ -1,3 +1,5 @@
+from sqlalchemy.orm.exc import NoResultFound
+
 from tangled.web import Resource, represent
 
 from .. import model
@@ -39,11 +41,15 @@ class Entry(Resource):
 
     @represent('text/html', template_name='entry.mako')
     def GET(self):
-        id = int(self.urlvars['id'])
+        id = self.urlvars['id']
         session = self.request.db_session
-        entry = session.query(model.Entry).get(id)
-        if not entry:
-            self.request.abort(404)
+        q = session.query(model.Entry)
+        entry = q.get(id)
+        if entry is None:
+            try:
+                entry = q.filter_by(slug=id).one()
+            except NoResultFound:
+                self.request.abort(404)
         return {
             'entry': entry,
         }

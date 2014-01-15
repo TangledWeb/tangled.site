@@ -7,8 +7,11 @@
       ${request.csrf_tag | n}
 
       <fieldset>
+        <label for="title">Slug</label>
+        <input type="text" name="slug" />
+
         <label for="title">Title</label>
-        <input type="text" name="title" autofocus="autofocus" />
+        <input type="text" name="title" />
 
         <label for="content">Content</label>
         <textarea name="content"></textarea>
