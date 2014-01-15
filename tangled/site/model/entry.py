@@ -9,3 +9,4 @@ class Entry(Base, BaseMixin, TimestampMixin):
     slug = Column(String(length=100), nullable=False, unique=True)
     title = Column(String(length=100), nullable=False)
     content = Column(Text, nullable=False)
+    content_html = Column(Text, nullable=False)

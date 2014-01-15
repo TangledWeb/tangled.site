@@ -5,7 +5,7 @@
 <%block name="content">
   % for entry in entries:
     <h3><a href="/entry/${entry.id}">${entry.title}</a></h3>
-    <div>${entry.content}</div>
+    <div>${entry.content_html | n}</div>
   % endfor
 </%block>
 

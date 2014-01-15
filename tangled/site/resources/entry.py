@@ -1,3 +1,5 @@
+from markdown import Markdown
+
 from sqlalchemy.orm.exc import NoResultFound
 
 from tangled.web import Resource, represent
@@ -19,12 +21,20 @@ class Entries(Resource):
     @represent('text/html', status=303)
     def POST(self):
         """Create a new entry."""
-        session = self.request.db_session
-        new_entry = model.Entry(**self.request.params)
+        req = self.request
+        content = req.POST['content']
+        kwargs = dict(
+            slug=req.POST['slug'],
+            title=req.POST['title'],
+            content=content,
+            content_html=Markdown().convert(content)
+        )
+        new_entry = model.Entry(**kwargs)
+        session = req.db_session
         session.add(new_entry)
         session.flush()
-        location = self.request.resource_url('entry', {'id': new_entry.id})
-        self.request.response.location = location
+        location = req.resource_url('entry', {'id': new_entry.id})
+        req.response.location = location
 
 
 @represent('*/*', permission='create_entry')
@@ -59,8 +69,10 @@ class Entry(Resource):
     def PUT(self):
         req = self.request
         entry = self.GET()['entry']
+        entry.slug = req.POST['slug']
         entry.title = req.POST['title']
         entry.content = req.POST['content']
+        entry.content_html = Markdown().convert(entry.content)
         req.response.location = self.url()
 
     @represent('*/*', permission='delete_entry')

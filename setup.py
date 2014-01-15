@@ -12,6 +12,7 @@ setup(
         'tangled.web>=0.1.dev0',
         'alembic>=0.6.2',
         'bcrypt>=1.0.2',
+        'Markdown>=2.3.1',
         'SQLAlchemy>=0.9.1',
     ),
     extras_require={
