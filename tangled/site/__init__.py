@@ -70,5 +70,16 @@ def include(app):
         return q.get(user_id)
 
     app.add_request_attribute(user)
+
+    def format_datetime(datetime):
+        if not datetime:
+            return datetime
+        day_of_month = datetime.strftime('%b').lstrip('0')
+        am_pm = datetime.strftime('%p').lower()
+        return datetime.strftime(
+            '%a, {d} %d, %Y at %H:%M{p}'.format(d=day_of_month, p=am_pm))
+
+    app.add_helper(format_datetime, static=True)
+
     app.add_subscriber(TemplateContextCreated, update_template_context)
     app.scan('.resources')

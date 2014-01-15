@@ -4,6 +4,14 @@
 
 <%block name="content">
   <div>${entry.content}</div>
+  % if request.user and request.user.has_role('admin'):
+    <p>
+      <small>
+        Created: ${request.helpers.format_datetime(entry.created_at)}<br/>
+        Updated: ${request.helpers.format_datetime(entry.updated_at)}<br/>
+      </small>
+    </p>
+  % endif
 </%block>
 
 % if request.user:
