@@ -22,5 +22,4 @@ class TimestampMixin:
 
     created_at = Column(
         DateTime, nullable=False, default=datetime.datetime.now)
-    published_at = Column(DateTime)
     updated_at = Column(DateTime)
