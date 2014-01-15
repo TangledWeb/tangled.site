@@ -27,9 +27,10 @@ class Entries(Resource):
         self.request.response.location = location
 
 
+@represent('*/*', permission='create_entry')
 class NewEntry(Resource):
 
-    @represent('text/html', template_name='new-entry.mako')
+    @represent('text/html', template_name='new_entry.mako')
     def GET(self):
         return {
             'entry': model.Entry(),
@@ -63,6 +64,7 @@ class Entry(Resource):
         self.request.response.location = location
 
 
+@represent('*/*', permission='edit_entry')
 class EditEntry(Resource):
 
     @represent('text/html', template_name='edit_entry.mako')
