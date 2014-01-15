@@ -63,7 +63,7 @@ class Entry(Resource):
         entry.content = req.POST['content']
         req.response.location = self.url()
 
-    # @represent('*/*', permission='delete_entry')
+    @represent('*/*', permission='delete_entry')
     @represent('text/html', status=303)
     def DELETE(self):
         entry = self.GET()['entry']
