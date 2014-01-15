@@ -15,5 +15,4 @@ class Home(Resource):
             resource = Entries(app, req)
         del req.representation_info
         req.resource = resource
-        req.resource_method = resource.GET
         return resource.GET()
