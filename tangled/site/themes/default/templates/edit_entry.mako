@@ -10,16 +10,29 @@
       <input type="hidden" name="$method" value="PUT" />
 
       <fieldset>
-        <label for="title">Slug</label>
-        <input type="text" name="slug" size="30" value="${entry.slug}"/>
+        <label for="entry.slug">Slug</label>
+        <input type="text" id="entry.slug" name="slug" size="30" value="${entry.slug}" />
 
-        <label for="title">Title</label>
-        <input type="text" name="title" size="30" value="${entry.title}" />
+        <label for="entry.title">Title</label>
+        <input type="text" id="entry.title" name="title" size="30" value="${entry.title}" />
 
-        <label for="content">Content</label>
-        <textarea name="content" cols="80" rows="25">${entry.content}</textarea>
+        <label for="entry.is_page">Page?</label>
+        <input type="checkbox" id="entry.is_page" name="is_page" ${'checked="checked"' if entry.is_page else ''} />
+
+        <label for="entry.content">Content</label>
+        <textarea id="entry.content" name="content" cols="80" rows="25">${entry.content}</textarea>
+
+        <input type="submit" value="Update" />
       </fieldset>
+    </form>
 
-      <input type="submit" value="Update" />
+    <br />
+
+    <form method="POST" action="${request.resource_url('entry', {'id': entry.id})}">
+      ${request.csrf_tag | n}
+      <input type="hidden" name="$method" value="DELETE" />
+      <fieldset>
+        <input type="submit" value="Delete" />
+      </fieldset>
     </form>
 </%block>

@@ -40,9 +40,11 @@
     <nav>
       <ul class="nav">
         <li><a href="/">Home</a></li>
-        <li><a href="/entries">Entries</a></li>
+        <li><a href="${settings['site.entries.path']}">${settings['site.entries.title']}</a></li>
         % for page in pages:
-          <li><a href="">${page.title}</a></li>
+          % if page.slug != settings['site.home']:
+            <li><a href="/${page.slug}">${page.title}</a></li>
+          % endif
         % endfor
       </ul>
     </nav>

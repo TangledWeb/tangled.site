@@ -1,12 +1,18 @@
 <%inherit file="base.mako"/>
 
-<%block name="page_title">Entries</%block>
+<%block name="page_title">${settings['site.entries.title']}</%block>
 
 <%block name="content">
-  % for entry in entries:
-    <h3><a href="/entry/${entry.id}">${entry.title}</a></h3>
-    <div>${entry.content_html | n}</div>
-  % endfor
+  <% non_page_entries = [entry for entry in entries if not entry.is_page] %>
+  % if non_page_entries:
+    % for entry in non_page_entries:
+      <h3><a href="/${entry.slug}">${entry.title}</a></h3>
+      <p><small>${request.helpers.format_datetime(entry.created_at)}</small></p>
+      <div>${entry.content_html | n}</div>
+    % endfor
+  % else:
+    Nothing found
+  % endif
 </%block>
 
 % if request.user:

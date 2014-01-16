@@ -45,6 +45,11 @@ def include(app):
     app.mount_resource('profile', '.resources.user:Profile', '/profile')
 
     # Entries
+    entries_settings = app.get_settings(prefix='site.entries.')
+    path = entries_settings['path']
+    name = path.strip('/')
+    app.mount_resource(name, '.resources.entry:Entries', path)
+
     app.mount_resource('entries', '.resources.entry:Entries', '/entries')
     app.mount_resource(
         'new_entry', '.resources.entry:NewEntry', '/entries/new')
@@ -54,11 +59,17 @@ def include(app):
     app.mount_resource(
         'edit_entry', '.resources.entry:EditEntry', '/entry/{id}/edit')
 
+    app.mount_resource(
+        'page', '.resources.entry:Entry', '/{id}', methods='GET')
+
     def update_template_context(event):
         request = event.request
-        q = request.db_session.query(model.Page)
+        q = request.db_session.query(model.Entry)
+        q = q.filter_by(is_page=True)
         event.context['pages'] = q.all()
         event.context['user'] = request.user
+
+    app.add_subscriber(TemplateContextCreated, update_template_context)
 
     @reify
     def user(request):
@@ -74,11 +85,12 @@ def include(app):
         if not datetime:
             return datetime
         day_of_month = datetime.strftime('%b').lstrip('0')
+        hour = datetime.strftime('%I').lstrip('0')
         am_pm = datetime.strftime('%p').lower()
         return datetime.strftime(
-            '%a, {d} %d, %Y at %H:%M{p}'.format(d=day_of_month, p=am_pm))
+            '%a, {d} %d, %Y at {I}:%M{p}'
+            .format(d=day_of_month, I=hour, p=am_pm))
 
     app.add_helper(format_datetime, static=True)
 
-    app.add_subscriber(TemplateContextCreated, update_template_context)
     app.scan('.resources')

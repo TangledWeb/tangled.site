@@ -24,6 +24,7 @@ class Entries(Resource):
         kwargs = dict(
             slug=req.POST['slug'],
             title=req.POST['title'],
+            is_page=('is_page' in req.POST),
             content=content,
         )
         new_entry = model.Entry(**kwargs)
@@ -68,6 +69,7 @@ class Entry(Resource):
         entry = self.GET()['entry']
         entry.slug = req.POST['slug']
         entry.title = req.POST['title']
+        entry.is_page = 'is_page' in req.POST
         entry.content = req.POST['content']
         req.response.location = self.url()
 
