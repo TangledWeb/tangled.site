@@ -4,7 +4,7 @@ from sqlalchemy.orm.session import sessionmaker
 from tangled.abcs import ACommand
 
 from .auth import hash_password
-from .model import Base
+from .model import Base, Entry
 from .model.user import User, Role, Permission
 
 
@@ -63,7 +63,20 @@ class Command(ACommand):
             roles=[sudo_role],
         )
 
-        session.add(user)
+        home_entry = Entry(
+            slug='home',
+            title='Home',
+            content='This is the home page.',
+            is_page=True,
+        )
+
+        entry = Entry(
+            slug='an-entry',
+            title='This is an entry',
+            content='It contains some content',
+        )
+
+        session.add_all([user, home_entry, entry])
         session.commit()
         session.close()
 
