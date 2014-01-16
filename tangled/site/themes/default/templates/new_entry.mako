@@ -8,13 +8,13 @@
 
       <fieldset>
         <label for="title">Slug</label>
-        <input type="text" name="slug" />
+        <input type="text" name="slug" size="30" />
 
         <label for="title">Title</label>
-        <input type="text" name="title" />
+        <input type="text" name="title" size="30" />
 
         <label for="content">Content</label>
-        <textarea name="content"></textarea>
+        <textarea name="content" cols="80" rows="25"></textarea>
       </fieldset>
 
       <input type="submit" value="Create new entry" />

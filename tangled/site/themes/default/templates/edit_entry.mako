@@ -11,13 +11,13 @@
 
       <fieldset>
         <label for="title">Slug</label>
-        <input type="text" name="slug" value="${entry.slug}"/>
+        <input type="text" name="slug" size="30" value="${entry.slug}"/>
 
         <label for="title">Title</label>
-        <input type="text" name="title" value="${entry.title}" />
+        <input type="text" name="title" size="30" value="${entry.title}" />
 
         <label for="content">Content</label>
-        <textarea name="content">${entry.content}</textarea>
+        <textarea name="content" cols="80" rows="25">${entry.content}</textarea>
       </fieldset>
 
       <input type="submit" value="Update" />

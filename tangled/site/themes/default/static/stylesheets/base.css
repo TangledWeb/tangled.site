@@ -88,3 +88,8 @@ nav li a, .nav li a {
   text-align: center;
   margin-top: 8px;
 }
+
+#content input, #content textarea {
+  display: block;
+  margin: 4px 0 8px 0;
+}
