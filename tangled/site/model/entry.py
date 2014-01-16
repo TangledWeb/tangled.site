@@ -2,7 +2,7 @@ from markdown import Markdown
 
 from sqlalchemy import event
 from sqlalchemy.schema import Column
-from sqlalchemy.types import String, Text
+from sqlalchemy.types import Boolean, String, Text
 
 from .base import Base, BaseMixin, TimestampMixin
 
@@ -13,6 +13,7 @@ class Entry(Base, BaseMixin, TimestampMixin):
     title = Column(String(length=100), nullable=False)
     content = Column(Text, nullable=False)
     content_html = Column(Text, nullable=False)
+    is_page = Column(Boolean, default=False)
 
 
 @event.listens_for(Entry.content, 'set')
