@@ -6,7 +6,7 @@ from ..model import User
 @config('*/*', permission='admin')
 class Users(Resource):
 
-    @config('text/html', template_name='admin/users.mako')
+    @config('text/html', template='admin/users.mako')
     def GET(self):
         q = self.request.db_session.query(User)
         users = q.all()

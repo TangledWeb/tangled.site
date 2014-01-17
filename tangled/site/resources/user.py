@@ -84,6 +84,6 @@ class User(Resource):
 @config('*/*', requires_authentication=True)
 class Profile(Resource):
 
-    @config('text/html', template_name='profile.mako')
+    @config('text/html', template='profile.mako')
     def GET(self):
         return {}

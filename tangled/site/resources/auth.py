@@ -9,7 +9,7 @@ log = logging.getLogger(__name__)
 
 class SignUp(Resource):
 
-    @config('text/html', template_name='auth/sign-up.mako')
+    @config('text/html', template='auth/sign-up.mako')
     def GET(self):
         """Show sign-up form."""
         req = self.request
@@ -37,7 +37,7 @@ class SignUp(Resource):
 
 class SignIn(Resource):
 
-    @config('text/html', template_name='/auth/sign-in.mako')
+    @config('text/html', template='/auth/sign-in.mako')
     def GET(self):
         if self.request.user:
             req = self.request

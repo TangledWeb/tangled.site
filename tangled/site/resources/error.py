@@ -17,7 +17,7 @@ DETAILS = {
 
 class Error(Resource):
 
-    @config('text/html', template_name='error.mako')
+    @config('text/html', template='error.mako')
     def GET(self):
         request = self.request
         response = request.response
