@@ -55,9 +55,18 @@
       </h2>
 
       <%block name="flash">
+        <% flash_messages = request.flash.pop('error') %>
+        % if flash_messages:
+          <ul class="flash error">
+            % for message in flash_messages:
+              <li>${message}</li>
+            % endfor
+          </ul>
+        % endif
+
         <% flash_messages = request.flash.pop() %>
         % if flash_messages:
-          <ul id="flash">
+          <ul class="flash info">
             % for message in flash_messages:
               <li>${message}</li>
             % endfor

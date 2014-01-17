@@ -81,15 +81,32 @@ nav li a, .nav li a {
 
 #page-title {
   margin-top: 0;
+  margin-bottom: 8px;
+}
+
+#content input, #content textarea {
+  display: block;
+  margin: 4px 0 8px 0;
+}
+
+.flash {
+  margin: 8px 0;
+  padding: 0;
+}
+.flash li {
+  margin: 4px 0;
+  padding: 4px;
+  list-style: none;
+}
+.info li {
+  background-color: #98fb98;
+}
+.error li {
+  background-color: #cd5c5c;
 }
 
 #footer {
   font-size: 85%;
   text-align: center;
   margin-top: 8px;
-}
-
-#content input, #content textarea {
-  display: block;
-  margin: 4px 0 8px 0;
 }
