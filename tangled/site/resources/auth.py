@@ -72,4 +72,7 @@ class SignOut(Resource):
         req = self.request
         req.authenticator.forget()
         req.expire_csrf_token()
+        req.session.clear()
+        req.session.save()
+        log.debug('Cleared session: {}'.format(req.session))
         req.flash('You have been signed out')
