@@ -79,10 +79,5 @@ def hash_password(plain_text_password):
 
 
 def has_permission(request, user_id, permission):
-    q = request.db_session.query(User)
-    user = q.get(user_id)
-    if user is None:
-        return False
-    if user.has_role('admin'):
-        return True
-    return permission in user.permissions
+    user = request.db_session.query(User).get(user_id)
+    return user is not None and user.has_permission(permission)
