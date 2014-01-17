@@ -1,12 +1,12 @@
-from tangled.web import Resource, represent
+from tangled.web import Resource, config
 
 from .. import auth, model
 
 
-@represent('*/*', requires_authentication=True)
+@config('*/*', requires_authentication=True)
 class User(Resource):
 
-    @represent('*/*', status=303, location='REFERER')
+    @config('*/*', status=303, location='REFERER')
     def PUT(self):
         req = self.request
         user = req.user
@@ -69,7 +69,7 @@ class User(Resource):
             setattr(user, k, v)
             req.flash('{} updated'.format(k.title()))
 
-    @represent('*/*', permission='delete_user', status=303, location='REFERER')
+    @config('*/*', permission='delete_user', status=303, location='REFERER')
     def DELETE(self):
         req = self.request
         user = req.db_session.query(model.User).get(self.urlvars['id'])
@@ -81,9 +81,9 @@ class User(Resource):
             req.db_session.delete(user)
 
 
-@represent('*/*', requires_authentication=True)
+@config('*/*', requires_authentication=True)
 class Profile(Resource):
 
-    @represent('text/html', template_name='profile.mako')
+    @config('text/html', template_name='profile.mako')
     def GET(self):
         return {}

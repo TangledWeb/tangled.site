@@ -1,6 +1,6 @@
 import logging
 
-from tangled.web import Resource, represent
+from tangled.web import Resource, config
 from tangled.site import auth
 
 
@@ -9,7 +9,7 @@ log = logging.getLogger(__name__)
 
 class SignUp(Resource):
 
-    @represent('text/html', template_name='auth/sign-up.mako')
+    @config('text/html', template_name='auth/sign-up.mako')
     def GET(self):
         """Show sign-up form."""
         req = self.request
@@ -19,7 +19,7 @@ class SignUp(Resource):
         else:
             return {}
 
-    @represent('*/*', status=303, location='/profile', not_logged_in=True)
+    @config('*/*', status=303, location='/profile', not_logged_in=True)
     def POST(self):
         req = self.request
         username = req.POST['username']
@@ -37,7 +37,7 @@ class SignUp(Resource):
 
 class SignIn(Resource):
 
-    @represent('text/html', template_name='/auth/sign-in.mako')
+    @config('text/html', template_name='/auth/sign-in.mako')
     def GET(self):
         if self.request.user:
             req = self.request
@@ -46,7 +46,7 @@ class SignIn(Resource):
         else:
             return {}
 
-    @represent('*/*', status=303, location='CAME_FROM', not_logged_in=True)
+    @config('*/*', status=303, location='CAME_FROM', not_logged_in=True)
     def POST(self):
         req = self.request
         user_id = req.POST['username']
@@ -67,7 +67,7 @@ class SignIn(Resource):
 class SignOut(Resource):
 
     # TODO: Redirect to /logged-out
-    @represent('*/*', status=303, location='/', requires_authentication=True)
+    @config('*/*', status=303, location='/', requires_authentication=True)
     def POST(self):
         req = self.request
         req.authenticator.forget()

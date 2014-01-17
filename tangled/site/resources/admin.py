@@ -1,12 +1,12 @@
-from tangled.web import Resource, represent
+from tangled.web import Resource, config
 
 from ..model import User
 
 
-@represent('*/*', permission='admin')
+@config('*/*', permission='admin')
 class Users(Resource):
 
-    @represent('text/html', template_name='admin/users.mako')
+    @config('text/html', template_name='admin/users.mako')
     def GET(self):
         q = self.request.db_session.query(User)
         users = q.all()

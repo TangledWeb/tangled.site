@@ -1,13 +1,13 @@
 from sqlalchemy.orm.exc import NoResultFound
 
-from tangled.web import Resource, represent
+from tangled.web import Resource, config
 
 from .. import model
 
 
 class Entries(Resource):
 
-    @represent('text/html', template_name='entries.mako')
+    @config('text/html', template_name='entries.mako')
     def GET(self):
         session = self.request.db_session
         entries = session.query(model.Entry).all()
@@ -15,8 +15,8 @@ class Entries(Resource):
             'entries': entries,
         }
 
-    @represent('*/*', permission='create_entry')
-    @represent('text/html', status=303)
+    @config('*/*', permission='create_entry')
+    @config('text/html', status=303)
     def POST(self):
         """Create a new entry."""
         req = self.request
@@ -35,10 +35,10 @@ class Entries(Resource):
         req.response.location = location
 
 
-@represent('*/*', permission='create_entry')
+@config('*/*', permission='create_entry')
 class NewEntry(Resource):
 
-    @represent('text/html', template_name='new_entry.mako')
+    @config('text/html', template_name='new_entry.mako')
     def GET(self):
         return {
             'entry': model.Entry(),
@@ -47,7 +47,7 @@ class NewEntry(Resource):
 
 class Entry(Resource):
 
-    @represent('text/html', template_name='entry.mako')
+    @config('text/html', template_name='entry.mako')
     def GET(self):
         id = self.urlvars['id']
         session = self.request.db_session
@@ -62,8 +62,8 @@ class Entry(Resource):
             'entry': entry,
         }
 
-    @represent('*/*', permission='edit_entry')
-    @represent('text/html', status=303)
+    @config('*/*', permission='edit_entry')
+    @config('text/html', status=303)
     def PUT(self):
         req = self.request
         entry = self.GET()['entry']
@@ -73,8 +73,8 @@ class Entry(Resource):
         entry.content = req.POST['content']
         req.response.location = self.url()
 
-    @represent('*/*', permission='delete_entry')
-    @represent('text/html', status=303)
+    @config('*/*', permission='delete_entry')
+    @config('text/html', status=303)
     def DELETE(self):
         entry = self.GET()['entry']
         self.request.db_session.delete(entry)
@@ -82,10 +82,10 @@ class Entry(Resource):
         self.request.response.location = location
 
 
-@represent('*/*', permission='edit_entry')
+@config('*/*', permission='edit_entry')
 class EditEntry(Resource):
 
-    @represent('text/html', template_name='edit_entry.mako')
+    @config('text/html', template_name='edit_entry.mako')
     def GET(self):
         resource = Entry(self.app, self.request, urlvars=self.urlvars)
         entry = resource.GET()['entry']

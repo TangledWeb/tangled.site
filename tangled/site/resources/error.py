@@ -1,4 +1,4 @@
-from tangled.web import Resource, represent
+from tangled.web import Resource, config
 
 
 TITLES = {
@@ -17,7 +17,7 @@ DETAILS = {
 
 class Error(Resource):
 
-    @represent('text/html', template_name='error.mako')
+    @config('text/html', template_name='error.mako')
     def GET(self):
         request = self.request
         response = request.response
