@@ -40,8 +40,6 @@ def include(app):
 
     # Users
     app.mount_resource('user', '.resources.user:User', '/user/{id}')
-    app.mount_resource(
-        'user_action', '.resources.user:UserActions', '/user/{id}/{action}')
     app.mount_resource('profile', '.resources.user:Profile', '/profile')
 
     # Entries
