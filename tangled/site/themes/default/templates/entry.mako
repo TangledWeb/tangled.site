@@ -3,7 +3,7 @@
 <%block name="page_title">${entry.title}</%block>
 
 <%block name="content">
-  <div>${entry.content_html}</div>
+  <div>${entry.content_html | n}</div>
   % if request.user and request.user.has_role('admin'):
     <p>
       <small>

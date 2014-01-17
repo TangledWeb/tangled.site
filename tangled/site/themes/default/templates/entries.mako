@@ -8,7 +8,7 @@
     % for entry in non_page_entries:
       <h3><a href="/${entry.slug}">${entry.title}</a></h3>
       <p><small>${request.helpers.format_datetime(entry.created_at)}</small></p>
-      <div>${entry.content_html}</div>
+      <div>${entry.content_html | n}</div>
     % endfor
   % else:
     Nothing found
