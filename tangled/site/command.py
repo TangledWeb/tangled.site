@@ -3,7 +3,6 @@ from sqlalchemy.orm.session import sessionmaker
 
 from tangled.abcs import ACommand
 
-from .auth import hash_password
 from .model import Base, Entry
 from .model.user import User, Role, Permission
 
@@ -59,7 +58,7 @@ class Command(ACommand):
         user = User(
             username=username,
             email=email,
-            password=hash_password(password),
+            password=password,
             roles=[sudo_role],
         )
 

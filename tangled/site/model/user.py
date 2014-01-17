@@ -1,3 +1,6 @@
+import bcrypt
+
+from sqlalchemy import event
 from sqlalchemy.orm import relationship
 from sqlalchemy.schema import Table, Column, ForeignKey
 from sqlalchemy.types import BINARY, String
@@ -32,6 +35,12 @@ class User(Base, BaseMixin):
         if 'sudo' in keys:
             return True
         return key in keys
+
+
+@event.listens_for(User.password, 'set', retval=True)
+def hash_password(user, plain_text_password, old_hashed_password, event):
+    import tangled.site.auth
+    return tangled.site.auth.hash_password(plain_text_password)
 
 
 class Permission(Base):
