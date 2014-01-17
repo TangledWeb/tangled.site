@@ -1,8 +1,6 @@
 <%inherit file="/base.mako" />
 
-<%block name="page_title">
-  <h2>Users</h2>
-</%block>
+<%block name="page_title">Users</%block>
 
 <%block name="content">
   % for user in users:

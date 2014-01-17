@@ -1,8 +1,6 @@
 <%inherit file="../base.mako"/>
 
-<%block name="page_title">
-  <h2>Sign Up</h2>
-</%block>
+<%block name="page_title">Sign Up</%block>
 
 <%block name="content">
   <form method="post" action="${request.make_path('/sign-up')}">

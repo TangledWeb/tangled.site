@@ -1,8 +1,6 @@
 <%inherit file="base.mako"/>
 
-<%block name="page_title">
-  <h2>Edit Entry</h2>
-</%block>
+<%block name="page_title">Edit Entry</%block>
 
 <%block name="content">
     <form method="POST" action="${request.resource_url('entry', {'id': entry.id})}">
