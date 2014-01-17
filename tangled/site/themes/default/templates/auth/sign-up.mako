@@ -6,7 +6,7 @@
 
 <%block name="content">
   <form method="post" action="${request.make_path('/sign-up')}">
-    ${request.csrf_tag | n}
+    ${request.csrf_tag}
 
     <label for="username">Username (optional)</label><br />
     <input type="text" name="username" /><br />

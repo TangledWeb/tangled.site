@@ -4,7 +4,7 @@
 
 <%block name="content">
     <form method="POST" action="${request.make_path('/entries')}">
-      ${request.csrf_tag | n}
+      ${request.csrf_tag}
 
       <fieldset>
         <label for="entry.slug">Slug</label>

@@ -6,7 +6,7 @@
 
 <%block name="content">
     <form method="POST" action="${request.resource_url('entry', {'id': entry.id})}">
-      ${request.csrf_tag | n}
+      ${request.csrf_tag}
       <input type="hidden" name="$method" value="PUT" />
 
       <fieldset>
@@ -29,7 +29,7 @@
     <br />
 
     <form method="POST" action="${request.resource_url('entry', {'id': entry.id})}">
-      ${request.csrf_tag | n}
+      ${request.csrf_tag}
       <input type="hidden" name="$method" value="DELETE" />
       <fieldset>
         <input type="submit" value="Delete" />

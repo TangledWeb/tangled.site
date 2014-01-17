@@ -27,7 +27,7 @@
       </li>
     </ul>
     <form method="post" action="${request.make_path('/user/{}'.format(user.id))}">
-      ${request.csrf_tag | n}
+      ${request.csrf_tag}
       <input name="$method" type="hidden" value="DELETE" />
       <input type="submit" value="Delete User" />
     </form>

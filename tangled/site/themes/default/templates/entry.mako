@@ -3,7 +3,7 @@
 <%block name="page_title">${entry.title}</%block>
 
 <%block name="content">
-  <div>${entry.content_html | n}</div>
+  <div>${entry.content_html}</div>
   % if request.user and request.user.has_role('admin'):
     <p>
       <small>
@@ -24,7 +24,7 @@
     % if request.user.has_permission('delete_entry'):
       <li>
         <form method="POST" action="${request.resource_url('entry', {'id': entry.id})}">
-          ${request.csrf_tag | n}
+          ${request.csrf_tag}
           <input type="hidden" name="$method" value="DELETE">
           <input type="submit" value="Delete" />
         </form>
