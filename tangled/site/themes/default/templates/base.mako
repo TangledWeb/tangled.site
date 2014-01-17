@@ -76,7 +76,7 @@
       <%block name="footer">
         % if settings.get('site.copyright'):
           <div id="copyright">
-            &copy; ${settings['site.copyright']}
+            &copy; ${settings['site.copyright'] | n}
           </div>
         % endif
         <div id="powered-by">
