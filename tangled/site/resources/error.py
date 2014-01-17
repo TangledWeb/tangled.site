@@ -22,7 +22,9 @@ class Error(Resource):
         request = self.request
         response = request.response
         if response.status_code == 401:
-            location = request.make_url('/sign-in')
+            came_from = request.url
+            location = request.make_url(
+                '/sign-in', query={'came_from': came_from})
             request.abort(307, location=location)
         else:
             return {

@@ -55,7 +55,7 @@ class SignIn(Resource):
         if canonical_user_id is not None:
             req.authenticator.remember(canonical_user_id)
             came_from = req.POST['came_from']
-            if came_from and came_from.endswith('/sign-in'):
+            if came_from.endswith('/sign-in'):
                 del req.POST['came_from']
             req.expire_csrf_token()
         else:

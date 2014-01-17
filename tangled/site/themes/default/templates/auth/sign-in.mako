@@ -12,7 +12,11 @@
     <label for="password">Password</label><br />
     <input type="password" name="password" /><br />
 
-    <% came_from = request.session.get('came_from') or request.referer %>
+    ## If the came_from param is present, that indicates that the user
+    ## was redirected here when attempting to access a protected page.
+    ## Otherwise, the user clicked the "Sign In" link or accessed the
+    ## /sign-in page directly.
+    <% came_from = request.params.get('came_from') or request.referer or '' %>
     <input type="hidden" name="came_from" value="${came_from}" />
 
     <input type="submit" value="Sign In" />
