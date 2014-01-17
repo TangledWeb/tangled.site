@@ -10,9 +10,9 @@ from .base import Base, BaseMixin
 
 class User(Base, BaseMixin):
 
-    email = Column(String(length=100), nullable=False)
+    email = Column(String(length=100), nullable=False, unique=True)
     name = Column(String(length=100))
-    username = Column(String(length=100))
+    username = Column(String(length=100), unique=True)
     password = Column(BINARY(60), nullable=False)
 
     roles = relationship('Role', secondary='user_role')
