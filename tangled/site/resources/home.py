@@ -13,6 +13,6 @@ class Home(Resource):
             resource = Entry(app, req, urlvars={'id': home_slug})
         else:
             resource = Entries(app, req)
-        del req.representation_info
+        del req.resource_config
         req.resource = resource
         return resource.GET()
