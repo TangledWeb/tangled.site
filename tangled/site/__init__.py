@@ -39,7 +39,7 @@ def include(app):
     app.mount_resource('admin/users', '.resources.admin:Users', '/admin/users')
 
     # Users
-    app.mount_resource('user', '.resources.user:User', '/user/{id}')
+    app.mount_resource('user', '.resources.user:User', '/user/<id>')
     app.mount_resource('profile', '.resources.user:Profile', '/profile')
 
     # Entries
@@ -53,12 +53,12 @@ def include(app):
         'new_entry', '.resources.entry:NewEntry', '/entries/new')
 
     # Entry
-    app.mount_resource('entry', '.resources.entry:Entry', '/entry/{id}')
+    app.mount_resource('entry', '.resources.entry:Entry', '/entry/<id>')
     app.mount_resource(
-        'edit_entry', '.resources.entry:EditEntry', '/entry/{id}/edit')
+        'edit_entry', '.resources.entry:EditEntry', '/entry/<id>/edit')
 
     app.mount_resource(
-        'page', '.resources.entry:Entry', '/{id}', methods='GET')
+        'page', '.resources.entry:Entry', '/<id>', methods='GET')
 
     def update_template_context(event):
         request = event.request
