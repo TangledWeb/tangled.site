@@ -1,5 +1,3 @@
-import bcrypt
-
 from sqlalchemy import event
 from sqlalchemy.orm import relationship
 from sqlalchemy.schema import Table, Column, ForeignKey
