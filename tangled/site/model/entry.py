@@ -1,3 +1,4 @@
+import re
 from datetime import datetime
 
 from markdown import Markdown
@@ -9,6 +10,9 @@ from sqlalchemy.types import Boolean, DateTime, String, Text
 from .base import Base, BaseMixin, TimestampMixin
 
 
+slug_re = re.compile(r'^[\w-]+$')
+
+
 class Entry(Base, BaseMixin, TimestampMixin):
 
     slug = Column(String(length=100), nullable=False, unique=True)
@@ -18,6 +22,12 @@ class Entry(Base, BaseMixin, TimestampMixin):
     is_page = Column(Boolean, default=False)
     published = Column(Boolean, default=False)
     published_at = Column(DateTime)
+
+
+@event.listens_for(Entry.slug, 'set')
+def on_set_slug(entry, value, *_):
+    if not slug_re.search(value):
+        raise ValueError('Slug may contain only word characters and dash')
 
 
 @event.listens_for(Entry.content, 'set')
