@@ -66,6 +66,7 @@ class Command(ACommand):
             slug='home',
             title='Home',
             content='This is the home page.',
+            published=True,
             is_page=True,
         )
 
@@ -73,6 +74,7 @@ class Command(ACommand):
             slug='an-entry',
             title='This is an entry',
             content='It contains some content',
+            published=True,
         )
 
         session.add_all([user, home_entry, entry])

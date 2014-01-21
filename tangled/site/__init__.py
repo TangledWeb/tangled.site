@@ -63,7 +63,7 @@ def include(app):
     def update_template_context(event):
         request = event.request
         q = request.db_session.query(model.Entry)
-        q = q.filter_by(is_page=True)
+        q = q.filter_by(published=True, is_page=True)
         event.context['pages'] = q.all()
         event.context['user'] = request.user
 

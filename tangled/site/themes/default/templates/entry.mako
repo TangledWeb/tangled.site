@@ -3,15 +3,16 @@
 <%block name="page_title">${entry.title}</%block>
 
 <%block name="content">
-  <div>${entry.content_html | n}</div>
-  % if request.user and request.user.has_role('admin'):
-    <p>
-      <small>
+  <p>
+    <small>
+      % if request.user and request.user.has_role('admin'):
         Created: ${request.helpers.format_datetime(entry.created_at)}<br/>
         Updated: ${request.helpers.format_datetime(entry.updated_at)}<br/>
-      </small>
-    </p>
-  % endif
+      % endif
+      Published: ${request.helpers.format_datetime(entry.published_at) or 'Unpublished'}<br/>
+    </small>
+  </p>
+  <div>${entry.content_html | n}</div>
 </%block>
 
 % if request.user:

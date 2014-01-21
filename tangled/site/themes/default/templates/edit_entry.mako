@@ -14,6 +14,9 @@
         <label for="entry.title">Title</label>
         <input type="text" id="entry.title" name="title" size="30" value="${entry.title}" />
 
+        <label for="entry.published">Published?</label>
+        <input type="checkbox" id="entry.published" name="published" ${'checked="checked"' if entry.published else ''} />
+
         <label for="entry.is_page">Page?</label>
         <input type="checkbox" id="entry.is_page" name="is_page" ${'checked="checked"' if entry.is_page else ''} />
 

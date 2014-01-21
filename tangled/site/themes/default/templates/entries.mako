@@ -2,12 +2,12 @@
 
 <%block name="page_title">${settings['site.entries.title']}</%block>
 
-<%block name="content">
-  <% non_page_entries = [entry for entry in entries if not entry.is_page] %>
+ <%block name="content">
+  <% non_page_entries = [entry for entry in entries if entry.published and not entry.is_page] %>
   % if non_page_entries:
     % for entry in non_page_entries:
       <h3><a href="/${entry.slug}">${entry.title}</a></h3>
-      <p><small>${request.helpers.format_datetime(entry.created_at)}</small></p>
+      <p><small>Published ${request.helpers.format_datetime(entry.published_at) or 'Unpublished'}</small></p>
       <div>${entry.content_html | n}</div>
     % endfor
   % else:

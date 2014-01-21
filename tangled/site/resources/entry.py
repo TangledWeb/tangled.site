@@ -24,6 +24,7 @@ class Entries(Resource):
         kwargs = dict(
             slug=req.POST['slug'],
             title=req.POST['title'],
+            published=('published' in req.POST),
             is_page=('is_page' in req.POST),
             content=content,
         )
@@ -50,14 +51,18 @@ class Entry(Resource):
     @config('text/html', template='entry.mako')
     def GET(self):
         id = self.urlvars['id']
-        session = self.request.db_session
+        req = self.request
+        session = req.db_session
         q = session.query(model.Entry)
-        entry = q.get(id)
-        if entry is None:
+        if not (req.user and req.user.has_permission('edit_entry')):
+            q = q.filter_by(published=True)
+        try:
+            entry = q.filter_by(id=id).one()
+        except NoResultFound:
             try:
                 entry = q.filter_by(slug=id).one()
             except NoResultFound:
-                self.request.abort(404)
+                req.abort(404)
         return {
             'entry': entry,
         }
@@ -69,6 +74,7 @@ class Entry(Resource):
         entry = self.GET()['entry']
         entry.slug = req.POST['slug']
         entry.title = req.POST['title']
+        entry.published = 'published' in req.POST
         entry.is_page = 'is_page' in req.POST
         entry.content = req.POST['content']
         req.response.location = self.url()
