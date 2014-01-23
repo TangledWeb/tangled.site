@@ -39,7 +39,7 @@
 
     <nav>
       <ul class="nav">
-        % if user.has_role('admin'):
+        % if user and user.has_role('admin'):
           <li><a href="${request.resource_url('admin')}">Admin</a></li>
         % endif
         <li><a href="/">Home</a></li>
