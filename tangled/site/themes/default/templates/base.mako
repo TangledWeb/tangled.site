@@ -4,7 +4,7 @@
   <head>
     <title>${settings['site.title']}</title>
     % for name in ('normalize', 'base'):
-      <% href = request.static_url('/static/stylesheets/{}.css'.format(name)) %>
+      <% href = request.static_url('/static/css/{}.css'.format(name)) %>
       <link rel="stylesheet" type="text/css" href="${href}" />
     % endfor
   </head>
