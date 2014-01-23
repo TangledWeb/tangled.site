@@ -34,10 +34,8 @@ class Users(Resource):
 @config('*/*', permission='sudo')
 class Meta(Resource):
 
+    """Metadata about the site that only superuses should see."""
+
     @config('text/html', template='admin/meta.mako')
     def GET(self):
-        q = self.request.db_session.query(User)
-        users = q.all()
-        return {
-            'users': users,
-        }
+        return {}
