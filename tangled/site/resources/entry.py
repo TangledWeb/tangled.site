@@ -7,7 +7,7 @@ from .. import model
 
 class Entries(Resource):
 
-    @config('text/html', template='entries.mako')
+    @config('text/html', template='entry/entries.mako')
     def GET(self):
         session = self.request.db_session
         entries = session.query(model.Entry).all()
@@ -39,7 +39,7 @@ class Entries(Resource):
 @config('*/*', permission='create_entry')
 class NewEntry(Resource):
 
-    @config('text/html', template='new_entry.mako')
+    @config('text/html', template='entry/new.mako')
     def GET(self):
         return {
             'entry': model.Entry(),
@@ -48,7 +48,7 @@ class NewEntry(Resource):
 
 class Entry(Resource):
 
-    @config('text/html', template='entry.mako')
+    @config('text/html', template='entry/entry.mako')
     def GET(self):
         id = self.urlvars['id']
         req = self.request
@@ -91,7 +91,7 @@ class Entry(Resource):
 @config('*/*', permission='edit_entry')
 class EditEntry(Resource):
 
-    @config('text/html', template='edit_entry.mako')
+    @config('text/html', template='entry/edit.mako')
     def GET(self):
         resource = Entry(self.app, self.request, urlvars=self.urlvars)
         entry = resource.GET()['entry']
