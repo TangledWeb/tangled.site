@@ -1,4 +1,4 @@
-<%inherit file="/base.mako" />
+<%inherit file="base.mako" />
 
 <%block name="page_title">Admin</%block>
 
