@@ -36,9 +36,9 @@ def include(app):
     app.mount_resource('sign-out', '.resources.auth:SignOut', '/sign-out')
 
     # Admin
-    app.mount_resource('admin', '.resources.admin:Index', '/admin')
-    app.mount_resource('admin/meta', '.resources.admin:Meta', '/admin/meta')
-    app.mount_resource('admin/users', '.resources.admin:Users', '/admin/users')
+    admin = app.mount_resource('admin', '.resources.admin:Admin', '/admin')
+    admin.mount('users', 'users', method_name='users')
+    admin.mount('meta', 'meta', factory='.resources.admin:Meta')
 
     # Users
     app.mount_resource('user', '.resources.user:User', '/user/<id>')
