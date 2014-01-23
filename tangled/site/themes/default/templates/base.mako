@@ -21,7 +21,7 @@
         </a>
         &middot;
         % if user.has_role('admin'):
-          <a href="${request.make_path('/admin/users')}">Admin</a>
+          <a href="${request.resource_url('admin')}">Admin</a>
           &middot;
         % endif
         ${sign_out_form()}
@@ -39,6 +39,9 @@
 
     <nav>
       <ul class="nav">
+        % if user.has_role('admin'):
+          <li><a href="${request.resource_url('admin')}">Admin</a></li>
+        % endif
         <li><a href="/">Home</a></li>
         <li><a href="${settings['site.entries.path']}">${settings['site.entries.title']}</a></li>
         % for page in pages:

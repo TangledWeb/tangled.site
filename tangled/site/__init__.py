@@ -36,6 +36,7 @@ def include(app):
     app.mount_resource('sign-out', '.resources.auth:SignOut', '/sign-out')
 
     # Admin
+    app.mount_resource('admin', '.resources.admin:Index', '/admin')
     app.mount_resource('admin/meta', '.resources.admin:Meta', '/admin/meta')
     app.mount_resource('admin/users', '.resources.admin:Users', '/admin/users')
 
