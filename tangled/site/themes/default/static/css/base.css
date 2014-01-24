@@ -1,92 +1,42 @@
-body {
-  color: #222;
-}
-
 a {
-  color: #000f7f;
-  text-decoration: none;
+  color: #707098;
 }
-
-#meta {
-  padding: 2px;
-  font-size: 85%;
-  text-align: right;
-}
-
-#meta a {
-  color: #222;
-}
-
-#meta form,
-nav form,
-.nav form {
-  display: inline;
-}
-
-#meta input,
-nav input,
-.nav input {
-  margin: 0;
-  padding: 0;
-  border: none;
-  background: none;
-}
-
-#header,
-#content {
-  padding: 8px;
+a:hover {
+  color: #404058;
 }
 
 #header {
-  height: 112px;
-  background-color: #222;
+  background-color: #444;
+  padding: 8px;
 }
 #header a {
-  color: #eee;
+  color: #f8f8f8;
   margin: 0;
   padding: 0;
+  text-decoration: none;
 }
-#header h1,
-#header h2 {
+.sign-out-form {
+  padding: 3px 20px;
+  clear: both;
+}
+.title {
   margin: 0;
   padding: 0;
-}
-#title {
   height: 96px;
 }
-
-#tagline {
+.tagline {
   height: 16px;
   font-size: 16px;
-  font-weight: normal;
   line-height: 16px;
 }
 
-nav ul, .nav {
-  background-color: #cccce8;
-  margin: 0;
-  padding: 4px 0 4px 8px;
+nav ul {
+  width: 100%;
+  background-color: #d0d0e8;
 }
-
-nav li, .nav li {
-  display: inline;
-  margin: 0 8px 0 0;
-}
-
-nav li a, .nav li a {
-  margin: 0;
-  padding: 0;
-  color: #222;
-}
-
-#page-title {
-  margin-top: 0;
-  margin-bottom: 8px;
-}
-
-#content input, #content textarea {
-  display: block;
-  margin: 4px 0 8px 0;
+nav li a,
+.bottom-nav a {
+  color: #444;
 }
 
 .flash {
@@ -98,15 +48,44 @@ nav li a, .nav li a {
   padding: 4px;
   list-style: none;
 }
-.info li {
-  background-color: #98fb98;
-}
-.error li {
-  background-color: #cd5c5c;
+
+.bottom-nav {
+  background-color: #d0d0e8;
 }
 
-#footer {
+footer {
   font-size: 85%;
   text-align: center;
   margin-top: 8px;
+}
+
+/* Bootstrap Overrides */
+
+.btn-primary {
+  color: #444;
+  background-color: #d0d0e8;
+  border-color: #444;
+}
+.btn-primary:hover {
+  color: #222;
+  background-color: #b0b0c8;
+  border-color: #111;
+}
+
+.btn-link {
+  color: #707098;
+}
+.btn-link:hover {
+  color: #404058;
+}
+
+.btn-danger {
+  color: #644;
+  background-color: #e8d0d0;
+  border-color: #888;
+}
+.btn-danger:hover {
+  color: #422;
+  background-color: #c8b0b0;
+  border-color: #555;
 }
