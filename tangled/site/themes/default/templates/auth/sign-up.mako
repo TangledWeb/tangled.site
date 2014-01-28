@@ -6,15 +6,17 @@
   <form method="post" action="${request.make_path('/sign-up')}">
     ${request.csrf_tag}
 
-    <label for="username">Username (optional)</label><br />
-    <input type="text" name="username" /><br />
+    <div class="row">
+      <div class="col-xs-4 form-group">
+        <input type="text" name="username" class="form-control"
+               autofocus="autofocus" placeholder="Username (optional)">
+        <input type="email" name="email" class="form-control"
+               required="required" placeholder="Email Address">
+        <input type="password" name="password" class="form-control"
+               required="required" placeholder="Password">
+      </div>
+    </div>
 
-    <label for="email">Email</label><br />
-    <input type="email" name="email" /><br />
-
-    <label for="password">Password</label><br />
-    <input type="password" name="password" /><br />
-
-    <input type="submit" value="Sign Up" />
+    <input type="submit" value="Sign Up" class="btn btn-default">
   </form>
 </%block>
