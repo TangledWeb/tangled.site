@@ -5,6 +5,10 @@ setup(
     name='tangled.site',
     version='0.1.dev0',
     description='Simple site/blog/cms',
+    long_description=open('README.rst').read(),
+    url='http://tangledframework.org/',
+    author='Wyatt Baldwin',
+    author_email='self@wyattbaldwin.com',
     packages=find_packages(),
     install_requires=(
         'tangled.mako>=0.1.dev0',
