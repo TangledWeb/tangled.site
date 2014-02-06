@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 
 setup(
@@ -9,8 +9,13 @@ setup(
     url='http://tangledframework.org/',
     author='Wyatt Baldwin',
     author_email='self@wyattbaldwin.com',
-    packages=find_packages(),
-    install_requires=(
+    packages=[
+        'tangled.site',
+        'tangled.site.model',
+        'tangled.site.resources',
+        'tangled.site.tests',
+    ],
+    install_requires=[
         'tangled.mako>=0.1.dev0',
         'tangled.sqlalchemy>=0.1.dev0',
         'tangled.web>=0.1.dev0',
@@ -18,21 +23,21 @@ setup(
         'bcrypt>=1.0.2',
         'Markdown>=2.3.1',
         'SQLAlchemy>=0.9.1',
-    ),
+    ],
     extras_require={
-        'dev': (
+        'dev': [
             'tangled[dev]',
-        ),
+        ],
     },
     entry_points="""
     [tangled.scripts]
     site = tangled.site.command
 
     """,
-    classifiers=(
+    classifiers=[
         'Development Status :: 1 - Planning',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
-    ),
+    ],
 )

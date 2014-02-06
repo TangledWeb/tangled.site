@@ -2,6 +2,6 @@ include CHANGELOG
 include LICENSE
 include buildout.cfg
 include tangled/site/defaults.ini
-recursive-include tangled/site/themes *
+recursive-include tangled/site/themes/* *
 recursive-exclude tangled/site/themes/*/static/bootstrap *
 recursive-exclude tangled/site/themes/*/static/jquery *
