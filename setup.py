@@ -16,6 +16,7 @@ setup(
         'tangled.site.resources',
         'tangled.site.tests',
     ],
+    include_package_data=True,
     install_requires=[
         'tangled.mako>=0.1.dev0',
         'tangled.sqlalchemy>=0.1.dev0',
