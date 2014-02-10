@@ -7,6 +7,7 @@ setup(
     description='Simple site/blog/cms',
     long_description=open('README.rst').read(),
     url='http://tangledframework.org/',
+    download_url='https://github.com/TangledWeb/tangled.site',
     author='Wyatt Baldwin',
     author_email='self@wyattbaldwin.com',
     packages=[
