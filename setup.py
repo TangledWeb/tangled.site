@@ -24,7 +24,7 @@ setup(
         'alembic>=0.6.2',
         'bcrypt>=1.0.2',
         'Markdown>=2.3.1',
-        'SQLAlchemy>=0.9.1',
+        'SQLAlchemy>=0.9.2',
     ],
     extras_require={
         'dev': [
