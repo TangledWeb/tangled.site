@@ -17,6 +17,12 @@ class BaseMixin:
     def __tablename__(cls):
         return cls.__name__.lower()
 
+    def __json_data__(self):
+        data = {}
+        for c in self.__table__.columns:
+            data[c.name] = getattr(self, c.name)
+        return data
+
 
 class TimestampMixin:
 
