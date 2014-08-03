@@ -1,6 +1,6 @@
 import os
 
-from tangled.decorators import reify
+from tangled.decorators import cached_property
 from tangled.web.events import TemplateContextCreated
 
 from . import model
@@ -71,7 +71,7 @@ def include(app):
 
     app.add_subscriber(TemplateContextCreated, update_template_context)
 
-    @reify
+    @cached_property
     def user(request):
         user_id = request.authenticator.user_id
         if user_id is None:
