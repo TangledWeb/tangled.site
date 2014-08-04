@@ -93,4 +93,4 @@ def include(app):
 
     app.add_helper(format_datetime, static=True)
 
-    app.scan('.resources')
+    app.load_config('.resources')
