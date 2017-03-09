@@ -19,12 +19,12 @@ setup(
     ],
     include_package_data=True,
     install_requires=[
-        'bcrypt>=1.0.2',
-        'Markdown>=2.3.1',
-        'SQLAlchemy>=0.9.2',
         'tangled.mako>=0.1a3',
         'tangled.sqlalchemy>=0.1a5',
         'tangled.web>=0.1a10',
+        'bcrypt>=3.1.3',
+        'Markdown>=2.6.8',
+        'SQLAlchemy>=1.1.6',
     ],
     extras_require={
         'dev': [
