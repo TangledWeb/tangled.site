@@ -19,16 +19,16 @@ setup(
     ],
     include_package_data=True,
     install_requires=[
-        'tangled.mako>=0.1a2',
-        'tangled.sqlalchemy>=0.1a2',
-        'tangled.web>=0.1a5',
         'bcrypt>=1.0.2',
         'Markdown>=2.3.1',
         'SQLAlchemy>=0.9.2',
+        'tangled.mako>=0.1a3',
+        'tangled.sqlalchemy>=0.1a5',
+        'tangled.web>=0.1a10',
     ],
     extras_require={
         'dev': [
-            'tangled.web[dev]>=0.1a5',
+            'tangled.web[dev]>=0.1a10',
         ],
     },
     entry_points="""
