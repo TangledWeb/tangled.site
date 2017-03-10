@@ -50,19 +50,25 @@ class Entry(Resource):
 
     @config('text/html', template='entry/entry.mako')
     def GET(self):
-        id = self.urlvars['id']
-        req = self.request
-        session = req.db_session
+        entry_id = self.urlvars['id']
+        session = self.request.db_session
+        user = self.request.user
         q = session.query(model.Entry)
-        if not (req.user and req.user.has_permission('edit_entry')):
+        if not (user and user.has_permission('edit_entry')):
             q = q.filter_by(published=True)
-        try:
-            entry = q.filter_by(id=id).one()
-        except NoResultFound:
+        if entry_id.isdecimal():
             try:
-                entry = q.filter_by(slug=id).one()
+                entry = q.filter_by(id=entry_id).one()
             except NoResultFound:
-                req.abort(404)
+                pass
+            else:
+                return {
+                    'entry': entry,
+                }
+        try:
+            entry = q.filter_by(slug=entry_id).one()
+        except NoResultFound:
+            self.request.abort(404)
         return {
             'entry': entry,
         }
