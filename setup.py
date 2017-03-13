@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='tangled.site',
-    version='0.1a4',
+    version='0.1a5.dev0',
     description='Simple site/blog/cms',
     long_description=open('README.rst').read(),
     url='http://tangledframework.org/',
