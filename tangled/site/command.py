@@ -23,9 +23,11 @@ class Command(ACommand):
     def run(self):
         runner = getattr(self.args, 'runner', None)
         if runner:
-            getattr(self, runner)()
+            runner = getattr(self, runner)
+            return runner()
         else:
             self.parser.print_help()
+            return 1
 
     def init_db(self):
         try:
@@ -33,10 +35,10 @@ class Command(ACommand):
                 'Are you sure you want to destroy existing data? '
                 'Type "yes" to continue. ')
         except KeyboardInterrupt:
-            self.exit('\nAborted.')
+            return
 
         if answer != 'yes':
-            self.exit('Aborted.')
+            return
 
         username = self.args.username
         email = self.args.email
