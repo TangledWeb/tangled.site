@@ -1,22 +1,16 @@
-from setuptools import setup
+from setuptools import setup, PEP420PackageFinder
 
 
 setup(
     name='tangled.site',
-    version='0.1a5.dev0',
+    version='1.0a5.dev5',
     description='Simple site/blog/cms',
     long_description=open('README.rst').read(),
-    url='http://tangledframework.org/',
+    url='https://tangledframework.org/',
     download_url='https://github.com/TangledWeb/tangled.site/tags',
     author='Wyatt Baldwin',
     author_email='self@wyattbaldwin.com',
-    packages=[
-        'tangled',
-        'tangled.site',
-        'tangled.site.model',
-        'tangled.site.resources',
-        'tangled.site.tests',
-    ],
+    packages=PEP420PackageFinder.find(include=['tangled*']),
     include_package_data=True,
     install_requires=[
         'tangled.mako>=0.1a3',
