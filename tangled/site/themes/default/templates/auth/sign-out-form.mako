@@ -1,7 +1,6 @@
 <%def name="sign_out_form()">
-  <form method="POST" action="${request.make_path('/sign-out')}"
-        class="form-inline sign-out-form">
-    ${request.csrf_tag}
-    <input type="submit" value="Sign Out" class="btn btn-primary">
-  </form>
+    <form method="post" action="${request.make_path('/sign-out')}" class="sign-out-form">
+        ${request.csrf_tag}
+        <input type="submit" value="Sign Out">
+    </form>
 </%def>
