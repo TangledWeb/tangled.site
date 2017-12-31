@@ -20,11 +20,6 @@ setup(
         'Markdown>=2.6.8',
         'SQLAlchemy>=1.1.6',
     ],
-    extras_require={
-        'dev': [
-            'tangled.web[dev]>=0.1a10',
-        ],
-    },
     entry_points="""
     [tangled.scripts]
     site = tangled.site.command

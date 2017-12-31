@@ -1,0 +1,5 @@
+-e ../tangled[dev]
+-e ../tangled.mako
+-e ../tangled.sqlalchemy
+-e ../tangled.web
+-e .
