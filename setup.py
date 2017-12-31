@@ -3,7 +3,7 @@ from setuptools import setup, PEP420PackageFinder
 
 setup(
     name='tangled.site',
-    version='1.0a5.dev5',
+    version='1.0a5',
     description='Simple site/blog/cms',
     long_description=open('README.rst').read(),
     url='https://tangledframework.org/',
