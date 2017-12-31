@@ -81,9 +81,9 @@ def include(app):
 
     app.add_request_attribute(user)
 
-    def format_datetime(datetime):
+    def format_datetime(datetime, default='N/A'):
         if not datetime:
-            return datetime
+            return default
         day_of_month = datetime.strftime('%b').lstrip('0')
         hour = datetime.strftime('%I').lstrip('0')
         am_pm = datetime.strftime('%p').lower()
