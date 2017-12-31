@@ -13,12 +13,12 @@ setup(
     packages=PEP420PackageFinder.find(include=['tangled*']),
     include_package_data=True,
     install_requires=[
-        'tangled.mako>=0.1a3',
+        'tangled.mako>=1.0a5',
         'tangled.sqlalchemy>=0.1a5',
-        'tangled.web>=0.1a10',
-        'bcrypt>=3.1.3',
-        'Markdown>=2.6.8',
-        'SQLAlchemy>=1.1.6',
+        'tangled.web>=1.0a12',
+        'bcrypt>=3.1.4',
+        'Markdown>=2.6.10',
+        'SQLAlchemy>=1.1.15',
     ],
     entry_points="""
     [tangled.scripts]
