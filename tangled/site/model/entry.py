@@ -37,8 +37,12 @@ def set_content_html(entry, value, *_):
 
 
 @event.listens_for(Entry.published, 'set')
-def on_set_published(entry, published, already_published, _):
-    if not published:
+def on_set_published(entry, published, *_):
+    if published:
+        # If already published, set published timestamp (but only if
+        # it's not already set).
+        now = datetime.now()
+        if entry.published_at is None:
+            entry.published_at = now
+    else:
         entry.published_at = None
-    elif not already_published:
-        entry.published_at = datetime.now()
